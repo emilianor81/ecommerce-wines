@@ -8,6 +8,8 @@ router.use('/admin',routesAdmin)
 router.use('/',routesUser)
 router.use('/checkout', routesCheckout)
 
+
+
 module.exports = router;
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
