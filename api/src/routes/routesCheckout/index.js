@@ -1,19 +1,13 @@
+require('dotenv').config();
 const { Router } = require('express');
-//modelos acá:
 const router = Router();
-// const { Client, Order, Product, Shipping , order_detail} = require('../../db');
 const Sequelize = require('sequelize');
-// const order = require('../../models/order');
 const bodyParser = require("body-parser")
-// SDK de Mercado Pago
 const mercadopago = require ('mercadopago');
 
-// app.use(bodyParser.urlencoded({ extended: false }))
-// Agrega credenciales
 mercadopago.configure({
-  access_token: 'APP_USR-392066547320183-072316-f819befeb9b16b2530ad2ab1fd244dd3-795901018' // TETE
+  access_token: process.env.MERCADOPAGO_TOKEN
 });
-// 1239061139
 
 
 router.post('/', (req, res)=>{
@@ -37,25 +31,8 @@ console.log(1,req.body)
       }).catch(function(error){
         console.log('error',error);
       });
-    // res.send('hola')
 })
 
-
-// router.get("/pagos/:id", (req, res)=>{
-//   const mp = new mercadopago('APP_USR-392066547320183-072316-f819befeb9b16b2530ad2ab1fd244dd3-795901018')
-//   const id = req.params.id
-//   // console.info("Buscando el id", id)
-//   mp.get(`/v1/payments/search`, {'status': 'pending'}) //{"external_reference":id})
-//   .then(resultado  => {
-//     res.json({"resultado": resultado})
-//   })
-//   .catch(err => {
-//     console.error('No se consulto:', err)
-//     res.json({
-//       error: err
-//     })
-//   })
-// })
 
 module.exports = router;
 
